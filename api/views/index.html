@@ -27,10 +27,40 @@
 		font-family: 'Arsenal'
 	}
 	.title{
-		font-size: 70px
+		font-size: 70px;
+		animation-name: breath;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
+
 	}
 	p:not(.title){
-		font-size: 30px
+		font-size: 30px;
+		animation-name: breathing;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
+
+	}
+	@keyframes breath {
+    	0% {
+    		font-size: 72px;
+    	}
+    	50% {
+    		font-size: 70px;
+    	}
+    	100% {
+    		font-size: 72px;
+    	}
+	}
+	@keyframes breathing {
+    	0% {
+    		font-size: 31px;
+    	}
+    	50% {
+    		font-size: 30px;
+    	}
+    	100% {
+    		font-size: 31px;
+    	}
 	}
 </style>
 <body>
