@@ -15,7 +15,7 @@ app.use('/public', express.static('public'));
 
 //UNIQUE GET ENDPOINT
 
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
 	res.render('index.html');
 });
 
