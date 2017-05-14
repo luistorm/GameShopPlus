@@ -55,6 +55,6 @@ server.listen(__server_port, () => {
 	console.log('\x1b[37m','API listen on:', '\x1b[36m', __server_ip_address);
 	console.log('\x1b[37m','Port:', '\x1b[36m', __server_port);
 	console.log('\x1b[37m','DBClient connected at:', '\x1b[36m', __server_ip_address);
-	console.log('\x1b[37m','Database name:', '\x1b[36m', dbClient._config.db);
+	console.log('\x1b[37m','Database name:', '\x1b[36m', connection.config.database);
 	console.log('\x1b[37m','-------------------------------------');
 });
