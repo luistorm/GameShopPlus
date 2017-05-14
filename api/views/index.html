@@ -7,68 +7,42 @@
 
 	<!--Link tags-->
 	<link href='./public/favi.png' rel='shortcut icon' type='image/png'/>
+	<link rel="stylesheet" href="./public/css/styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Arsenal:400,700" rel="stylesheet">
+
 	<title>Sockets - API</title>
 </head>
-<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.container{
-		position: absolute;
-		margin: 0 auto;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		text-align: center;
-		font-family: 'Arsenal'
-	}
-	.title{
-		font-size: 70px;
-		animation-name: breath;
-		animation-duration: 2s;
-		animation-iteration-count: infinite;
-
-	}
-	p:not(.title){
-		font-size: 30px;
-		animation-name: breathing;
-		animation-duration: 2s;
-		animation-iteration-count: infinite;
-
-	}
-	@keyframes breath {
-    	0% {
-    		font-size: 72px;
-    	}
-    	50% {
-    		font-size: 70px;
-    	}
-    	100% {
-    		font-size: 72px;
-    	}
-	}
-	@keyframes breathing {
-    	0% {
-    		font-size: 31px;
-    	}
-    	50% {
-    		font-size: 30px;
-    	}
-    	100% {
-    		font-size: 31px;
-    	}
-	}
-</style>
 <body>
-
 	<div class="container">
-		<p class='title'>SOCKETS TEST</p>
-		<p>using socket.io and node.js</p>
+		<div class="header">
+			<div class="blink"></div>
+			<div class='sub-header'>
+				<p class='title'>SOCKETS TEST</p>
+				<div class='flex-h'>
+					<p class="users-counter"></p>
+				</div>
+			</div>
+			<p>Chap application using socket.io and node.js</p>
+		</div>
+		<div class="login">
+			<p>We've notice that you didnt have an username, please insert yout username</p>
+			<input type="text" id='user-name' placeholder="Username">
+			<button class='disabled' id='user-name-button'>Send</button>
+		</div>
+		<ul id="messages"></ul>
+		<form action="#" id='writter' class='disabled'>
+			<input id="message" autocomplete="off"/>
+			<div class='buttons-container'>
+				<button>Send</button>
+				<p class='grettings'></p>
+			</div>
+		</form>
 	</div>
-
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="./public/js/socket.io.js"></script>
+<script src='./public/js/scripts.js'></script>
 </html>
