@@ -1,0 +1,163 @@
+	body{
+		overflow: hidden;
+	}
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	form { 
+		padding: 3px; 
+		width: 100%; 
+	}
+	form input { 
+		padding: 10px; 
+		width: 90%;
+		border: 1px solid rgba(0,0,0,0.5);
+	    border-radius: 5px;
+	    margin: 10px 0;
+	}
+	button{ 
+		width: 100px;
+	    background: -webkit-linear-gradient(180deg, #8e90cc, #3bb8ca);
+	    border: none;
+	    letter-spacing: 8px;
+	    color: #fff;
+	    padding: 10px;
+	    margin-bottom: 10px;
+	    border-radius: 2px;
+	    text-transform: uppercase;
+	}
+	#messages { list-style-type: none; margin: 0; padding: 0; }
+	#messages li { padding: 5px 10px; }
+	/*#messages li:nth-child(odd) { background: #eee; }*/
+	
+	.container{
+		max-width: 500px;
+		margin: 40px auto;
+		height: 80vh;
+		width: 90%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		font-family: 'Arsenal';
+		border: 1px solid rgba(0,0,0,0.1);
+		border-radius: 2px;
+		padding: 20px;
+	}
+	.title{
+		font-size: 32px;
+	}
+	.header{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.header p:not(.title){
+		font-size: 12px;
+	}
+	.disabled{
+		pointer-events: none;
+		opacity: .3;
+	}
+	.blink{
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #de8b8b;
+		animation-name: breathing;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+	}
+	.login{
+		margin: 50px auto;
+		width: 400px;
+		box-shadow: 2px 2px 2px rgba(0,0,0,.2);
+		padding: 20px;
+		text-align: center;
+	}
+	.login input{
+		margin: 15px auto;
+		width: 70%;
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid rgba(0,0,0,.1);
+		outline: transparent;
+		font-size: 16px;
+	  	-webkit-transition: all 0.3s ease-out;
+	  	-moz-transition: all 0.3s ease-out;
+	  	-o-transition: all 0.3s ease-out;
+	  	transition: all 0.3s ease-out;
+	}
+	.login input:focus{
+		border-color: #35a4cb;
+	}
+	.flex-h{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.flex-v{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.buttons-container{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+	.grettings{
+		padding: 10px;
+	}
+	.sub-header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	#messages{
+		height: 70%;
+	    background: rgba(0,0,0,.03);
+	    width: 90%;
+	    margin: 10px 0;
+	    display: none;
+	    overflow-y: auto;
+	}
+	#messages li{
+		display: table;
+		display: flex;
+		flex-direction: row;
+	}
+	#messages > li.myself{
+		justify-content: flex-start;
+	}
+	#messages > li.other{
+		justify-content: flex-end;
+	}
+	#messages li > div{
+	    border-radius: 10px;
+	    padding: 5px 20px;
+	    margin: 10px;
+	    box-shadow: 2px 2px 2px rgba(0,0,0,.2);
+	}
+	#messages > li.other > div{
+		background: #b9e2e1;
+	}
+	#messages > li.myself > div{
+		background: #d6d6d6;
+	}
+	span.author{
+		font-size: 12px;
+		color: rgba(0,0,0,.5);
+	}
+	@keyframes breathing {
+    	0% {
+    		background: #de8b8b;
+    	}
+    	50% {
+    		background: #c63f3f;
+    	}
+    	100% {
+    		background: #de8b8b;
+    	}
+	}
