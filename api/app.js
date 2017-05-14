@@ -16,7 +16,7 @@ const	connection = mysql.createConnection({
 		host: __server_ip_address,
 		user: 'luis',
 		password: '1234',
-		db: 'gameshop'
+		database: 'gameshop'
 	});
 
 	
@@ -50,11 +50,22 @@ io.on('connection', (socket) => {
 		io.emit('disconnect', users);
 	});
 });
+connection.connect();
 
 server.listen(__server_port, () => {
+	console.log('------------------------------------------------');
 	console.log('\x1b[37m','API listen on:', '\x1b[36m', __server_ip_address);
 	console.log('\x1b[37m','Port:', '\x1b[36m', __server_port);
 	console.log('\x1b[37m','DBClient connected at:', '\x1b[36m', __server_ip_address);
 	console.log('\x1b[37m','Database name:', '\x1b[36m', connection.config.database);
+	console.log('\nQuery: \n');
+	connection.query('SELECT j.nombre from Juego as j', function(err, rows, fields) {
+  		if (!err)
+    		console.log('The solution is: ', rows);
+  		else
+    		console.log('Error while performing Query.');
+	});
+
 	console.log('\x1b[37m','-------------------------------------');
 });
+connection.end();
