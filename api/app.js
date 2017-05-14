@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
 	});
 });
 
-server.listen(__server_port, __server_ip_address, () => {
+server.listen(__server_port, () => {
 	console.log('\x1b[37m','API listen on:', '\x1b[36m', __server_ip_address);
 	console.log('\x1b[37m','Port:', '\x1b[36m', __server_port);
 	console.log('\x1b[37m','DBClient connected at:', '\x1b[36m', __server_ip_address);
