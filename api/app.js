@@ -4,7 +4,7 @@ const 	express = require('express'),
  		app     = express(),
  		server  = require('http').createServer(app),
 		io      = require('socket.io').listen(server),
-	 	Client	= require('mariasql'),
+	 	mysql	= require('mysql'),
 	  	cors 	= require('cors'),
 
 		//Global 'system' variables
@@ -12,9 +12,9 @@ const 	express = require('express'),
 		__server_ip_address = '127.0.0.1';
 
 //DB Client object
-const	dbClient = new Client({
+const	connection = mysql.createConnection({
 		host: __server_ip_address,
-		user: 'root',
+		user: 'luis',
 		password: '1234',
 		db: 'gameshop'
 	});
