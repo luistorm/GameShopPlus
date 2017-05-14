@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="header">
+		<div class="header w90 c-container">
 			<div class="blink"></div>
 			<div class='sub-header'>
 				<p class='title'>SOCKETS TEST</p>
@@ -24,21 +24,26 @@
 			</div>
 			<p>Chap application using socket.io and node.js</p>
 		</div>
-		<div class="login">
+		<div class="login w90 c-container">
 			<p>We've notice that you didnt have an username, please insert yout username</p>
 			<input type="text" id='user-name' placeholder="Username">
-			<button class='disabled' id='user-name-button'>Send</button>
+			<button class='disabled' id='user-name-button'>Login</button>
 		</div>
 		<ul id="messages"></ul>
-		<form action="#" id='writter' class='disabled'>
-			<input id="message" autocomplete="off"/>
+		<form action="#" id='writter' class='disabled w90 c-container'>
 			<div class='buttons-container'>
-				<button>Send</button>
-				<p class='grettings'></p>
+				<input id="message" autocomplete="off"/>
+				<div class="flex-v f-center">
+					<button class='circle flex-v f-center'>
+						<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+					</button>
+				</div>
 			</div>
+			<p class='grettings'></p>
 		</form>
 	</div>
 </body>
+<script src="https://use.fontawesome.com/4bbe68bed7.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
