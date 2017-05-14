@@ -18,9 +18,10 @@ const app = express(),
 	dbClient = new Client({
 		host: __server_ip_address,
 		user: 'root',
-		password: '',
+		password: '1234',
 		db: 'gameshop'
 	});
+
 
 //Setting app engine 
 app.set('view engine', 'html');
