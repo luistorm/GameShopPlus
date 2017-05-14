@@ -14,10 +14,19 @@ const 	express = require('express'),
 //DB Client object
 const	connection = mysql.createConnection({
 		host: __server_ip_address,
-		user: 'luis',
-		password: '1234',
+		user: 'root',
+		password: '',
 		database: 'gameshop'
 	});
+
+//Testing db connection
+connection.connect();
+connection.query('SELECT j.nombre from Juego as j', function(err, rows, fields) {
+	if (!err)
+		console.log('The solution is:', rows);
+	else
+		console.log('Error while performing Query.');
+});
 	
 //Setting app engine 
 app.set('view engine', 'html');
@@ -34,7 +43,6 @@ app.get('/', (req, res) => {
 	res.render('index.html');
 });
 
-
 var users = 0;
 io.on('connection', (socket) => {
 	users++;
@@ -49,23 +57,13 @@ io.on('connection', (socket) => {
 		io.emit('disconnect', users);
 	});
 });
-connection.connect();
 
 server.listen(__server_port, () => {
 	console.log('------------------------------------------------');
-	console.log('\x1b[37m','API listen on:', '\x1b[36m', __server_ip_address);
-	console.log('\x1b[37m','Port:', '\x1b[36m', __server_port);
+	console.log('\x1b[37m','API listen on port:', '\x1b[36m', __server_port);
 	console.log('\x1b[37m','DBClient connected at:', '\x1b[36m', __server_ip_address);
 	console.log('\x1b[37m','Database name:', '\x1b[36m', connection.config.database);
-	console.log('Database port: ',connection.config.port);
-	console.log('\nQuery: \n');
-	connection.query('SELECT j.nombre from Juego as j', function(err, rows, fields) {
-  		if (!err)
-    		console.log('The solution is: ', rows);
-  		else
-    		console.log('Error while performing Query.');
-	});
-
+	console.log('\x1b[37m','Database port:', '\x1b[36m', connection.config.port);
 	console.log('\x1b[37m','-------------------------------------');
 });
 //connection.end();
