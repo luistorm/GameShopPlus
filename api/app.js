@@ -22,7 +22,7 @@ const app = express(),
 		db: 'gameshop'
 	});
 
-
+	
 //Setting app engine 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
