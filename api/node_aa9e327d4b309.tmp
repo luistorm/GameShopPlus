@@ -42,7 +42,7 @@ var Consola = db.define('consola',{
 	portatil: {type: 'integer'}
 },{
 	methods: {
-		getNombre: function() { //take special care with the notation function()...
+		getNombre: function() {
 			return this.nombre;
 		}
 	}
