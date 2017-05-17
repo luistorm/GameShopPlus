@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TicTacToe</title>
+	<link href='./public/favi.png' rel='shortcut icon' type='image/png'/>
+	<link rel="stylesheet" href="./public/css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Arsenal:400,700" rel="stylesheet">
+</head>
+<body>
+	<div class="c-container w-90">
+		<p class="t-center">TicTacToc Game</p>
+		<p class="users-counter"></p>
+		<p class="welcome"></p>
+		<div class="c-container board">
+			<div class='flex-h f-center'>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+			</div>
+			<div class='flex-h f-center'>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+			</div>
+			<div class='flex-h f-center'>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+				<button class='ttt-button'>-</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="./public/js/socket.io.js"></script>
+<script>
+
+	const socket = io();
+	var player = {
+		id: '',
+		signature: ''
+	};
+
+	socket.on('users', (users) => {
+		$('.users-counter').text(`Users online: ${users}`);
+	});
+
+	socket.on('disconnect', (users) => {
+		$('.users-counter').text(`Users online: ${users}`);
+	});
+
+    socket.emit('ttt', 'New player!');
+    socket.on('ttt', (res) => {
+    	$('.welcome').text(res.message);
+    	player.id = res.id;
+    	player.signature = res.signature;
+    	if(player.id == null){
+    		$('.board').fadeOut();
+    	}
+    });
+
+    $('button').click(function() {
+    	var i = $('button').index(this);
+    	socket.emit('play', {position: i, id: player.id, signature: player.signature});
+    });	
+
+	socket.on('play', (res) => {
+		if(res.playsCount % player.id) $('.board').addClass('disabled');
+		else $('.board').removeClass('disabled');
+		$('button')
+			.eq(res.play.position)
+			.addClass('id-' + res.play.id)
+			.text(res.play.signature);
+	});
+	
+</script>
+</html>

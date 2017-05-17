@@ -42,16 +42,6 @@ var Consola = db.define('consola',{
 	}
 });
 
-User.get('luis',(err, user) => {
-	if(err) throw err;
-	console.log('I have the user with name: '+user.getLoginAndPass());
-});
-
-Consola.get(1, (err, consola) => {
-	if(err) throw err;
-	console.log('I have the console with name: '+consola.getNombre());
-});
-
 //Setting app engine 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -62,20 +52,26 @@ app.use(cors());
 //Setting public server route 
 app.use('/public', express.static('public'));
 
-//Unique get endpoint
+//Chat get endpoint
 app.get('/', (req, res) => {
 	res.render('index.html');
 });
 
+
+//Game endpoint
+app.get('/game', (req, res) => {
+	res.render('game.html');
+});
+
 //Sockets connection
 var users = 0;
+var plays = 0;
 io.on('connection', (socket) => {
 
 	users++;
-	console.log('new user listen');
+	io.emit('users', users);
 
 	socket.on('incommingMessage', (res) => {
-		console.log(res);
 		io.emit('outcommingMessage', res);
 	});
 
@@ -83,6 +79,24 @@ io.on('connection', (socket) => {
 		users--;
 		io.emit('disconnect', users);
 	});
+
+	socket.on('ttt', () => {
+		if(users <= 2){
+			socket.emit('ttt', {
+				message: "Hi! You are player " + users, 
+				id: users,
+				signature: (users == 1) ? 'X' : 'O'
+			});	
+		}else{
+			socket.emit('ttt', {message: "Sorry, this room is full", id: null});	
+		}
+	});
+
+	socket.on('play', (play) => {
+		plays++;
+		io.emit('play', {play: play, playsCount: plays});
+	});
+
 });
 
 
